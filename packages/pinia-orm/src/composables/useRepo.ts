@@ -27,10 +27,9 @@ export function useRepo (
 
   try {
     const typeModels = Object.values(repository.getModel().$types())
+    repository.database.register(repository.getModel())
     if (typeModels.length > 0) {
       typeModels.forEach(typeModel => repository.database.register(typeModel.newRawInstance()))
-    } else {
-      repository.database.register(repository.getModel())
     }
   } catch (e) {}
 
